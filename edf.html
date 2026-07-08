@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Comparatif Prix - Vert vs Classique</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Conteneur aligné tout à droite */
+        .wrapper-infobulle {
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: flex-end; 
+            padding-right: 15px; 
+        }
+        
+        /* Style du bouton très discret */
+        .infobulle {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+            color: #95a5a6; 
+            font-size: 11px; 
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        .infobulle:hover {
+            color: #7f8c8d; 
+        }
+        
+        /* La bulle noire d'explication */
+        .infobulle .texte-bulle {
+            visibility: hidden;
+            width: 240px; 
+            background-color: rgba(44, 62, 80, 0.95); 
+            color: #ffffff;
+            text-align: left; 
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 11px;
+            line-height: 1.3;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            
+            position: absolute;
+            z-index: 10;
+            bottom: 160%;
+            right: 0; 
+            
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        
+        .infobulle .texte-bulle::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            right: 25px; 
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(44, 62, 80, 0.95) transparent transparent transparent;
+        }
+        
+        .infobulle:hover .texte-bulle {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%; max-width: 800px; margin: 20px auto; text-align: center; font-family: Arial, sans-serif;">
+        
+        <!-- Titre principal -->
+        <h2 id="titreGraphique" style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 5px;">
+            Évolution des prix : Classique vs 100% Vert
+        </h2>
+
+        <!-- Sous-titre -->
+        <p style="color: #7f8c8d; font-size: 14px; margin-top: 0px; margin-bottom: 15px;">
+            💡 Ce graphique est mis à jour automatiquement chaque 1er du mois
+        </p>
+        
+        <!-- Zone du graphique -->
+        <div style="height: 350px;">
+            <canvas id="monGraphique"></canvas>
+        </div>
+
+        <!-- L'icône d'information avec sa bulle descriptive -->
+        <div class="wrapper-infobulle">
+            <div class="infobulle">
+                <span>Comprendre le calcul</span>
+                <span style="background: #f0f3f4; width: 15px; height: 15px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 10px;">?</span>
+                <span class="texte-bulle">
+                    Les tarifs indiqués représentent la moyenne TTC des offres (classiques et 100% vertes) de ce fournisseur pour un particulier avec un compteur 6 kVA (option Base). Données issues du médiateur de l'énergie.
+                </span>
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- Appel de notre nouveau script -->
+    <script src="script-vert.js"></script>
+</body>
+</html>
