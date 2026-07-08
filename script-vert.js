@@ -1,10 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. On va chercher le NOUVEAU fichier JSON
     fetch('data-verte.json')
         .then(response => response.json())
         .then(data => {
             
-            // 2. On identifie le fournisseur grâce au nom de la page HTML
             const path = window.location.pathname;
             const pageName = path.split('/').pop().replace('.html', '').toLowerCase();
 
@@ -13,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
                           .replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
             }
 
-            // 3. On filtre pour le fournisseur de la page
             const providerData = data.filter(row => cleanName(row.provider_name) === cleanName(pageName));
 
             if (providerData.length === 0) {
@@ -23,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
             providerData.sort((a, b) => new Date(a.scraping_month) - new Date(b.scraping_month));
 
-            // 4. On isole les mois uniques et on garde les 24 derniers
             let uniqueMonths = [...new Set(providerData.map(item => item.scraping_month))];
             uniqueMonths = uniqueMonths.slice(-24);
 
@@ -45,7 +41,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getFullYear();
             });
 
-            // 5. On dessine le graphique
             const ctx = document.getElementById('monGraphique').getContext('2d');
             new Chart(ctx, {
                 type: 'line',
@@ -59,9 +54,10 @@ document.addEventListener('DOMContentLoaded', function() {
                             backgroundColor: 'rgba(149, 165, 166, 0.1)',
                             borderWidth: 2,
                             pointRadius: 0,
-                            pointHoverRadius: 4,
+                            pointHoverRadius: 6,
                             fill: true,
-                            spanGaps: true
+                            spanGaps: true,
+                            tension: 0.4 // Rendu smooth des courbes
                         },
                         {
                             label: 'Offre 100% Verte',
@@ -70,19 +66,35 @@ document.addEventListener('DOMContentLoaded', function() {
                             backgroundColor: 'rgba(39, 174, 96, 0.1)',
                             borderWidth: 2,
                             pointRadius: 0,
-                            pointHoverRadius: 4,
+                            pointHoverRadius: 6,
                             fill: true,
-                            spanGaps: true
+                            spanGaps: true,
+                            tension: 0.4 // Rendu smooth des courbes
                         }
                     ]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    
+                    // Cette option permet d'afficher l'encadré pour les 2 courbes en même temps au survol
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    
                     scales: {
+                        x: {
+                            grid: {
+                                display: false // Supprime le quadrillage vertical
+                            }
+                        },
                         y: {
                             beginAtZero: false,
                             max: 0.35, 
+                            grid: {
+                                display: false // Supprime le quadrillage horizontal
+                            },
                             ticks: {
                                 callback: function(value) { return value.toFixed(2).replace('.', ',') + ' €'; }
                             }
@@ -90,9 +102,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     plugins: {
                         tooltip: {
+                            backgroundColor: 'rgba(44, 62, 80, 0.95)', // Fond de l'encadré élégant
+                            titleFont: { size: 13, family: 'Arial' },
+                            bodyFont: { size: 12, family: 'Arial' },
+                            padding: 10,
+                            cornerRadius: 6,
                             callbacks: {
                                 label: function(context) {
-                                    return context.dataset.label + ' : ' + context.parsed.y.toFixed(4) + ' € / kWh TTC';
+                                    let label = context.dataset.label || '';
+                                    let val = context.parsed.y;
+                                    
+                                    if (label) {
+                                        label += ' : ';
+                                    }
+                                    if (val !== null) {
+                                        // Formate le prix avec une virgule pour les décimales
+                                        label += val.toFixed(4).replace('.', ',') + ' € / kWh TTC';
+                                    } else {
+                                        label += 'Non disponible';
+                                    }
+                                    return label;
                                 }
                             }
                         }
