@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     labels: labelsMois,
                     datasets: [
                         {
-                            label: 'Offre 0% verte', // La modification est ici !
+                            label: 'Offres 0% vertes', // La modification est ici !
                             data: prixClassique,
                             borderColor: '#95a5a6', 
                             backgroundColor: 'rgba(149, 165, 166, 0.1)',
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             tension: 0.4 
                         },
                         {
-                            label: 'Offre 100% verte', // J'ai aussi mis "verte" en minuscules pour que ce soit harmonieux
+                            label: 'Offres 100% vertes', // J'ai aussi mis "verte" en minuscules pour que ce soit harmonieux
                             data: prixVert,
                             borderColor: '#27ae60', 
                             backgroundColor: 'rgba(39, 174, 96, 0.1)',
