@@ -85,18 +85,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     scales: {
                         x: {
                             grid: {
-                                display: false // On garde l'axe vertical sans quadrillage pour ne pas surcharger
+                                display: true, // Réactive le quadrillage vertical (de bas en haut)
+                                color: 'rgba(0, 0, 0, 0.05)' // Même couleur discrète que l'axe horizontal
                             }
                         },
                         y: {
-                            min: 0.15, // Force le graphique à commencer à 0,15 €
-                            max: 0.35, // Force le graphique à s'arrêter à 0,35 €
+                            min: 0.15, 
+                            max: 0.35, 
                             grid: {
                                 display: true, 
-                                color: 'rgba(0, 0, 0, 0.05)' // Un gris très discret et transparent
+                                color: 'rgba(0, 0, 0, 0.05)' 
                             },
                             ticks: {
-                                stepSize: 0.05, // Force l'affichage tous les 0,05 €
+                                stepSize: 0.05, 
                                 callback: function(value) { return value.toFixed(2).replace('.', ',') + ' €'; }
                             }
                         }
