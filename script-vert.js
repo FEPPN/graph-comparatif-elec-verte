@@ -50,26 +50,26 @@ document.addEventListener('DOMContentLoaded', function() {
                         {
                             label: 'Offre Classique (0% vert)',
                             data: prixClassique,
-                            borderColor: '#95a5a6', // Gris
+                            borderColor: '#95a5a6', 
                             backgroundColor: 'rgba(149, 165, 166, 0.1)',
                             borderWidth: 2,
                             pointRadius: 0,
                             pointHoverRadius: 6,
                             fill: true,
                             spanGaps: true,
-                            tension: 0.4 // Rendu smooth des courbes
+                            tension: 0.4 
                         },
                         {
                             label: 'Offre 100% Verte',
                             data: prixVert,
-                            borderColor: '#27ae60', // Vert éclatant
+                            borderColor: '#27ae60', 
                             backgroundColor: 'rgba(39, 174, 96, 0.1)',
                             borderWidth: 2,
                             pointRadius: 0,
                             pointHoverRadius: 6,
                             fill: true,
                             spanGaps: true,
-                            tension: 0.4 // Rendu smooth des courbes
+                            tension: 0.4 
                         }
                     ]
                 },
@@ -77,7 +77,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     responsive: true,
                     maintainAspectRatio: false,
                     
-                    // Cette option permet d'afficher l'encadré pour les 2 courbes en même temps au survol
                     interaction: {
                         mode: 'index',
                         intersect: false,
@@ -86,23 +85,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     scales: {
                         x: {
                             grid: {
-                                display: false // Supprime le quadrillage vertical
+                                display: false // On garde l'axe vertical sans quadrillage pour ne pas surcharger
                             }
                         },
                         y: {
-                            beginAtZero: false,
-                            max: 0.35, 
+                            min: 0.15, // Force le graphique à commencer à 0,15 €
+                            max: 0.35, // Force le graphique à s'arrêter à 0,35 €
                             grid: {
-                                display: false // Supprime le quadrillage horizontal
+                                display: true, 
+                                color: 'rgba(0, 0, 0, 0.05)' // Un gris très discret et transparent
                             },
                             ticks: {
+                                stepSize: 0.05, // Force l'affichage tous les 0,05 €
                                 callback: function(value) { return value.toFixed(2).replace('.', ',') + ' €'; }
                             }
                         }
                     },
                     plugins: {
                         tooltip: {
-                            backgroundColor: 'rgba(44, 62, 80, 0.95)', // Fond de l'encadré élégant
+                            backgroundColor: 'rgba(44, 62, 80, 0.95)',
                             titleFont: { size: 13, family: 'Arial' },
                             bodyFont: { size: 12, family: 'Arial' },
                             padding: 10,
@@ -116,7 +117,6 @@ document.addEventListener('DOMContentLoaded', function() {
                                         label += ' : ';
                                     }
                                     if (val !== null) {
-                                        // Formate le prix avec une virgule pour les décimales
                                         label += val.toFixed(4).replace('.', ',') + ' € / kWh TTC';
                                     } else {
                                         label += 'Non disponible';
