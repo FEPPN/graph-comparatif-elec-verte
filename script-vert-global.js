@@ -17,19 +17,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 // On prend toutes les offres de tous les fournisseurs pour ce mois précis
                 const offresDuMois = data.filter(item => item.scraping_month === month);
                 
-                // On isole toutes les offres 0% et on calcule la moyenne
-                const offresClassiques = offresDuMois.filter(item => item.green_energy_share.includes('0%'));
+                // On isole strictement les offres 0% (avec startsWith)
+                const offresClassiques = offresDuMois.filter(item => item.green_energy_share.startsWith('0%'));
                 if (offresClassiques.length > 0) {
-                    const somme = offresClassiques.reduce((acc, curr) => acc + curr.prix_moyen_kwh_base, 0);
+                    // parseFloat() force le JSON à être lu comme un vrai nombre pour l'addition
+                    const somme = offresClassiques.reduce((acc, curr) => acc + parseFloat(curr.prix_moyen_kwh_base), 0);
                     prixClassiqueGlobal.push(somme / offresClassiques.length);
                 } else {
                     prixClassiqueGlobal.push(null);
                 }
 
-                // On isole toutes les offres 100% et on calcule la moyenne
-                const offresVertes = offresDuMois.filter(item => item.green_energy_share.includes('100%'));
+                // On isole strictement les offres 100%
+                const offresVertes = offresDuMois.filter(item => item.green_energy_share.startsWith('100%'));
                 if (offresVertes.length > 0) {
-                    const somme = offresVertes.reduce((acc, curr) => acc + curr.prix_moyen_kwh_base, 0);
+                    const somme = offresVertes.reduce((acc, curr) => acc + parseFloat(curr.prix_moyen_kwh_base), 0);
                     prixVertGlobal.push(somme / offresVertes.length);
                 } else {
                     prixVertGlobal.push(null);
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return (d.getMonth() + 1).toString().padStart(2, '0') + '/' + d.getFullYear();
             });
 
-            // On dessine le graphique (avec les mêmes options de design)
+            // On dessine le graphique
             const canvas = document.getElementById('monGraphiqueGlobal');
             const ctx = canvas.getContext('2d');
             
