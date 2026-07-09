@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Comparatif Prix - Vert vs Classique</title>
+    <title>Comparatif Prix - Vert vs Classique - EDF</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* Conteneur aligné tout à droite */
@@ -34,7 +34,7 @@
         /* La bulle noire d'explication */
         .infobulle .texte-bulle {
             visibility: hidden;
-            width: 240px; 
+            width: 250px; 
             background-color: rgba(44, 62, 80, 0.95); 
             color: #ffffff;
             text-align: left; 
@@ -72,9 +72,9 @@
 <body>
     <div style="width: 100%; max-width: 800px; margin: 20px auto; text-align: center; font-family: Arial, sans-serif;">
         
-        <!-- Titre principal -->
+        <!-- Titre principal mis à jour pour EDF -->
         <h2 id="titreGraphique" style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 5px;">
-            Évolution des prix : Classique vs 100% Vert
+            Évolution des prix : 0% verte vs 100% verte - EDF
         </h2>
 
         <!-- Sous-titre -->
@@ -87,20 +87,20 @@
             <canvas id="monGraphique"></canvas>
         </div>
 
-        <!-- L'icône d'information avec sa bulle descriptive -->
+        <!-- L'icône d'information avec sa bulle descriptive modifiée -->
         <div class="wrapper-infobulle">
             <div class="infobulle">
                 <span>Comprendre le calcul</span>
                 <span style="background: #f0f3f4; width: 15px; height: 15px; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-size: 10px;">?</span>
                 <span class="texte-bulle">
-                    Les tarifs indiqués représentent la moyenne TTC des offres 0% et 100% vertes du fournisseur pour un particulier avec un compteur 6 kVA (option Base). Les données sont issues du médiateur de l'énergie.
+                    Les tarifs indiqués représentent la moyenne TTC des offres 0% et 100% vertes d'EDF pour un particulier avec un compteur 6 kVA (option Base). Les données sont issues du médiateur de l'énergie.
                 </span>
             </div>
         </div>
 
     </div>
     
-    <!-- Appel de notre nouveau script -->
+    <!-- Appel du script (qui lira "edf.html" pour filtrer les données) -->
     <script src="script-vert.js"></script>
 </body>
 </html>
