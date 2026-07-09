@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     labels: labelsMois,
                     datasets: [
                         {
-                            label: 'Offre Classique (0% vert)',
+                            label: 'Offre 0% verte',
                             data: prixClassique,
                             borderColor: '#95a5a6', 
                             backgroundColor: 'rgba(149, 165, 166, 0.1)',
