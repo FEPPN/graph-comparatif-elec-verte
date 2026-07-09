@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     labels: labelsMois,
                     datasets: [
                         {
-                            label: 'Offre 0% verte',
+                            label: 'Offre 0% verte', // La modification est ici !
                             data: prixClassique,
                             borderColor: '#95a5a6', 
                             backgroundColor: 'rgba(149, 165, 166, 0.1)',
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             tension: 0.4 
                         },
                         {
-                            label: 'Offre 100% Verte',
+                            label: 'Offre 100% verte', // J'ai aussi mis "verte" en minuscules pour que ce soit harmonieux
                             data: prixVert,
                             borderColor: '#27ae60', 
                             backgroundColor: 'rgba(39, 174, 96, 0.1)',
@@ -85,8 +85,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     scales: {
                         x: {
                             grid: {
-                                display: true, // Réactive le quadrillage vertical (de bas en haut)
-                                color: 'rgba(0, 0, 0, 0.05)' // Même couleur discrète que l'axe horizontal
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.05)' 
                             }
                         },
                         y: {
