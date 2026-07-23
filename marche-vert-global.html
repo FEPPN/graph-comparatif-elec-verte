@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+
     <meta charset="UTF-8">
     <title>Moyenne du marché - Vert vs Classique</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -12,12 +12,10 @@
         .infobulle .texte-bulle::after { content: ""; position: absolute; top: 100%; right: 25px; border-width: 5px; border-style: solid; border-color: rgba(44, 62, 80, 0.95) transparent transparent transparent; }
         .infobulle:hover .texte-bulle { visibility: visible; opacity: 1; }
     </style>
-</head>
-<body>
     <div style="width: 100%; max-width: 800px; margin: 20px auto; text-align: center; font-family: Arial, sans-serif;">
         
         <h2 id="titreGraphique" style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 5px;">
-            Moyenne du marché : 0% verte vs 100% verte
+            Moyenne du marché : offres 0% vertes vs 100% vertes
         </h2>
         <p style="color: #7f8c8d; font-size: 14px; margin-top: 0px; margin-bottom: 15px;">
             💡 Ce graphique est mis à jour automatiquement chaque 1er du mois
@@ -42,5 +40,4 @@
     
     <!-- On appelle le nouveau script global -->
     <script src="script-vert-global.js"></script>
-</body>
 </html>
