@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     labels: labelsMois,
                     datasets: [
                         {
-                            label: 'Tarif moyen offres 0% vertes',
+                            label: 'Tarif moyen des offres 0% vertes',
                             data: prixClassiqueGlobal,
                             borderColor: '#95a5a6', 
                             backgroundColor: 'rgba(149, 165, 166, 0.1)',
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             tension: 0.4 
                         },
                         {
-                            label: 'Tarif moyen offres 100% verte',
+                            label: 'Tarif moyen des offres 100% vertes',
                             data: prixVertGlobal,
                             borderColor: '#27ae60', 
                             backgroundColor: 'rgba(39, 174, 96, 0.1)',
